@@ -5,13 +5,23 @@ import SearchBox from './components/search-box/search-box.component';
 
 const App = () => {
   const [searchField, setSearchField] = useState('');
-  console.log(searchField);
+  const [monsters, setMonsters] = useState([]);
+
+  console.log('render');
+
+  // fetch('https://jsonplaceholder.typicode.com/users')
+  //   .then(response => response.json())
+  //   .then(users => setMonsters(users))
 
   const onSearchChange = (event) => { 
     console.log(event.target.value); 
     const searchFieldString = event.target.value.toLowerCase();
     setSearchField(searchFieldString);
   }
+
+  const filteredMonsters = monsters.filter((monster) => {
+    return monster.name.toLowerCase().includes(searchField);
+  })
 
   return(
     <div className='App'>
@@ -21,6 +31,7 @@ const App = () => {
         placeholder={'Search monsters'}
         className={'monsters-serach-box'}
       />
+      <CardList monsters={filteredMonsters} anything={['a', 'b']} />
     </div>
   )
 }
