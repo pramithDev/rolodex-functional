@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
 
@@ -9,9 +9,11 @@ const App = () => {
 
   console.log('render');
 
-  // fetch('https://jsonplaceholder.typicode.com/users')
-  //   .then(response => response.json())
-  //   .then(users => setMonsters(users))
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => setMonsters(users))
+  }, []);
 
   const onSearchChange = (event) => { 
     console.log(event.target.value); 
